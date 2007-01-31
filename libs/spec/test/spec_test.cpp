@@ -21,26 +21,35 @@ int main (int argc, char * argv[]) {
     try {
         value(v).should.equal(11);
     } catch (std::exception & e) {
-        std::cerr << e.what() << '\n';
+        std::cerr << "Expected: " << e.what() << '\n';
     };
 
     try {
         value(v).should.not_equal(10);
     } catch (std::exception & e) {
-        std::cerr << e.what() << '\n';
+        std::cerr << "Expected: " << e.what() << '\n';
     };
 
     try {
         value(v).should.be_between(20).and_(25);
     } catch (std::exception & e) {
-        std::cerr << e.what() << '\n';
+        std::cerr << "Expected: " << e.what() << '\n';
     };
 
     try {
         value(v).should.be_between(0).and_(1);
     } catch (std::exception & e) {
-        std::cerr << e.what() << '\n';
+        std::cerr << "Expected: " << e.what() << '\n';
     };
+
+    value(true).should.be_true();
+    value(false).should.be_false();
+
+    value("The quick brown fox jumps over the lazy dog.")
+        .should.equal
+        ("The quick brown fox jumps over the lazy dog.");
+    std::string str("The quick brown fox jumps over the lazy dog.");
+    value(str).should.equal("The quick brown fox jumps over the lazy dog.");
 
     return 0;
 };

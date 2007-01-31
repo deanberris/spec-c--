@@ -12,19 +12,41 @@
 
 #include <boost/spec/exceptions.hpp>
 #include <boost/spec/detail/should_impl.hpp>
+#include <boost/type_traits/is_array.hpp>
+#include <boost/type_traits/is_same.hpp>
+#include <boost/type_traits/remove_all_extents.hpp>
+#include <boost/mpl/if.hpp>
+#include <boost/mpl/and.hpp>
+#include <boost/mpl/logical.hpp>
 
 namespace boost { namespace spec {
 
+    using namespace boost::mpl;
+
     template <typename T>
     struct spec {
-        T _value;
-        detail::should_impl<T> should;
+        typedef typename if_< 
+                and_<
+                    boost::is_array<
+                        T
+                    >, 
+                    boost::is_same<
+                        typename boost::remove_all_extents<T>::type, 
+                        char
+                    > 
+                >,
+                const char * , 
+                T 
+            >::type type;
 
-        spec(const T & v) : _value(v), should(_value){ };
+        type _value;
+        detail::should_impl<type> should;
+
+        spec(type const & v) : _value(v), should(_value){ };
     };
     
     template <typename T>
-    inline spec<T> value (const T & v) {
+    inline spec <T> value (const T & v) {
         return spec<T>(v);
     };
 
