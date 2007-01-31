@@ -35,11 +35,11 @@ namespace boost { namespace spec {
                         char
                     > 
                 >,
-                const char * , 
+                std::string , 
                 T 
             >::type type;
 
-        type _value;
+        type const & _value;
         detail::should_impl<type> should;
 
         spec(type const & v) : _value(v), should(_value){ };

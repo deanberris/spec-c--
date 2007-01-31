@@ -16,7 +16,7 @@ namespace boost { namespace spec { namespace detail {
 
     template <typename T>
     struct should_impl {
-        explicit should_impl(T & value) : _value(value) { };
+        explicit should_impl(T const & value) : _value(value) { };
 
         template <typename _T>
         bool equal(const _T & expected) const {
@@ -53,7 +53,7 @@ namespace boost { namespace spec { namespace detail {
             return between_impl<_T>(_value);
         };
 
-        T & _value;
+        T const & _value;
     };
 
     // Overload for a boolean test
@@ -100,7 +100,7 @@ namespace boost { namespace spec { namespace detail {
     template <typename T>
     struct between_impl {
 
-        explicit between_impl(T & value) : _value(value) { };
+        explicit between_impl(T const & value) : _value(value) { };
 
         template <typename _T>
         bool and_(const _T & upper_bound) {
@@ -109,7 +109,7 @@ namespace boost { namespace spec { namespace detail {
             throw more_than_upper_bound_exception<T, _T>(_value, upper_bound);
         };
 
-        T & _value;
+        T const & _value;
     };
 
 }; // namespace detail
