@@ -1,0 +1,12 @@
+This is the Behavior Driven Development interface for C++
+implemented by Dean Michael Berris.
+
+The rationale of the library is to provide a BDD interface
+similar to what Ruby has in the RSpec [0] library. 
+
+This library is licensed under the Boost Software License.
+
+References
+
+    [0] RSpec -- http://rspec.rubyforge.org/
+
