@@ -51,5 +51,9 @@ int main (int argc, char * argv[]) {
     std::string str("The quick brown fox jumps over the lazy dog.");
     value(str).should.equal("The quick brown fox jumps over the lazy dog.");
 
+    // for 0.2 , support for string regex matching
+    value(str).should.match("The quick brown fox jumps over the lazy dog.");
+    value(str).should.match("^The.*[.]");
+
     return 0;
 };

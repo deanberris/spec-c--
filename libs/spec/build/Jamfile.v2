@@ -11,5 +11,6 @@ project spec.test
     ;
 
 unit-test spec_test : spec_test.cpp
+    : <linkflags>-lboost_regex-gcc41
     ;
 

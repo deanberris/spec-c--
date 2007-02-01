@@ -116,6 +116,33 @@ namespace boost { namespace spec {
         std::string _message;
     };
 
+    template <typename T, typename _T>
+    struct does_not_match_exception : std::exception {
+
+        does_not_match_exception(const T & value, const _T & pattern)
+            : _value(value) , _pattern(pattern) 
+        { 
+            std::ostringstream message("");
+            message << "spec:: value supplied ("
+                << _value 
+                << ") does not match pattern '"
+                << _pattern
+                << "'";
+
+            _message = message.str();
+        };
+
+        const char * what() const throw (){
+            return _message.c_str() ;
+        };
+
+        ~does_not_match_exception() throw () { };
+        
+        T _value;
+        _T _pattern;
+        std::string _message;
+    };
+
 }; // namespace spec
 
 }; // namespace boost
