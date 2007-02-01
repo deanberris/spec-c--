@@ -48,6 +48,30 @@ be no exception thrown.
 The library is developed to be part of the `Boost C++ Library`_.
 
 ----------
+Features
+----------
+
+The following list shows the features that the Spec library implements.
+
+- Integral Type specification of expected values
+
+  - ``value(some_int).should.equal(0)``
+  - ``value(some_int).should.be_greater_than(0)``
+  - ``value(some_int).should.be_less_than(0)``
+  - ``value(some_int).should.not_equal(0)``
+  - ``value(some_int).should.be_between(0).and_(1)``
+
+- String value specification of expected values
+
+  - ``value(some_string).should.equal("Some String Literal")``
+  - ``value(some_string).should.not_equal("Some other string Literal")``
+
+- Bool value specification
+
+  - ``value(some_bool).should.be_true()``
+  - ``value(some_bool).should.be_false()``
+
+----------
 References
 ----------
 
