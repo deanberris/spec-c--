@@ -15,12 +15,12 @@ Interface for specifying behavior of a program. The interface allows an
 alternative to the traditional Unit Testing interface of assertions to 
 test the behavior of modules/units/components.
 
-.. [0] Behavior Driven Development: http://behaviour-driven.org/
-
 Below is shown the example of how the Spec library can be used in your test
 suites:
 
-    ``#include <boost/spec.hpp>
+::
+
+    #include <boost/spec.hpp>
     #include <iostream>
 
     int main(int argc, char * argv[]) {
@@ -39,7 +39,7 @@ suites:
             cerr << "Caught: " << e.what() << '\n';
         };
         return 0;
-    };``
+    };
 
 Depending on what the user enters, the exception that is thrown by the
 specifications will be displayed. Should the user enter ``50`` there will
@@ -47,9 +47,16 @@ be no exception thrown.
 
 The library is developed to be part of the `Boost C++ Library`_.
 
+----------
+References
+----------
+
 .. _`Boost C++ Library`: http://boost.org/
 
+.. [0] Behavior Driven Development: http://behaviour-driven.org/
+
 ---------------
-Copyright (C) 2007 Dean Michael Berris <dean@orangeandbronze.com>
-Distributed under the Boost Software License, Version 1.0. (See accompanying file `LICENSE_1_0.txt` or copy at http://boost.org/LICENSE_1_0.txt)
+
+| Copyright (C) 2007 Dean Michael Berris <dean@orangeandbronze.com> 
+| Distributed under the Boost Software License, Version 1.0. (See accompanying file `LICENSE_1_0.txt` or copy at http://boost.org/LICENSE_1_0.txt)
 
