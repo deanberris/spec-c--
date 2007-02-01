@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.4.1: http://docutils.sourceforge.net/" />
+<title>Behavior Driven Development Interface</title>
+<link rel="stylesheet" href="rst.css" type="text/css" />
+</head>
+<body>
+<div class="document" id="behavior-driven-development-interface">
+<h1 class="title">Behavior Driven Development Interface</h1>
+<!-- Copyright 2007 (C) Dean Michael Berris <dean@orangeandbronze.com> -->
+<!-- Distributed under the Boost Software License, Version 1.0. -->
+<!-- (See accompanying file LICENSE_1_0.txt or copy at -->
+<!-- http://boost.org/LICENSE_1_0.txt) -->
+<div class="section">
+<h1><a id="the-spec-c-library" name="the-spec-c-library">The Spec C++ Library</a></h1>
+<p>The Spec C++ Library implements a Behavior Driven Development<a class="footnote-reference" href="#id2" id="id1" name="id1"><sup>0</sup></a> (BDD)
+Interface for specifying behavior of a program. The interface allows an
+alternative to the traditional Unit Testing interface of assertions to
+test the behavior of modules/units/components.</p>
+<p>Below is shown the example of how the Spec library can be used in your test
+suites:</p>
+<pre class="literal-block">
+#include &lt;boost/spec.hpp&gt;
+#include &lt;iostream&gt;
+
+int main(int argc, char * argv[]) {
+    using namespace boost::spec ;
+    using namespace std;
+
+    int an_int = 0;
+    cout &lt;&lt; &quot;Please enter an integer: &quot; &lt;&lt; endl;
+    cin &gt;&gt; an_int;
+    try {
+        value(an_int).should.be_greater_than(0);
+        value(an_int).should.be_less_than(99);
+        value(an_int).should.be_between(0).and_(99);
+        value(an_int).should.equal(50);
+    } catch (std::exception &amp; e) {
+        cerr &lt;&lt; &quot;Caught: &quot; &lt;&lt; e.what() &lt;&lt; '\n';
+    };
+    return 0;
+};
+</pre>
+<p>Depending on what the user enters, the exception that is thrown by the
+specifications will be displayed. Should the user enter <tt class="docutils literal"><span class="pre">50</span></tt> there will
+be no exception thrown.</p>
+<p>The library is developed to be part of the <a class="reference" href="http://boost.org/">Boost C++ Library</a>.</p>
+</div>
+<div class="section">
+<h1><a id="references" name="references">References</a></h1>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1" name="id2">[0]</a></td><td>Behavior Driven Development: <a class="reference" href="http://behaviour-driven.org/">http://behaviour-driven.org/</a></td></tr>
+</tbody>
+</table>
+<hr class="docutils" />
+<div class="line-block">
+<div class="line">Copyright (C) 2007 Dean Michael Berris &lt;<a class="reference" href="mailto:dean&#64;orangeandbronze.com">dean&#64;orangeandbronze.com</a>&gt;</div>
+<div class="line">Distributed under the Boost Software License, Version 1.0. (See accompanying file <cite>LICENSE_1_0.txt</cite> or copy at <a class="reference" href="http://boost.org/LICENSE_1_0.txt">http://boost.org/LICENSE_1_0.txt</a>)</div>
+</div>
+</div>
+</div>
+</body>
+</html>
