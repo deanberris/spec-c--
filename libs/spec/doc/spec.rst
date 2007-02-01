@@ -1,3 +1,8 @@
+.. Copyright 2007 (C) Dean Michael Berris <dean@orangeandbronze.com>
+.. Distributed under the Boost Software License, Version 1.0.
+.. (See accompanying file LICENSE_1_0.txt or copy at
+.. http://boost.org/LICENSE_1_0.txt)
+
 =====================================
 Behavior Driven Development Interface
 =====================================
@@ -46,4 +51,5 @@ The library is developed to be part of the `Boost C++ Library`_.
 
 ---------------
 Copyright (C) 2007 Dean Michael Berris <dean@orangeandbronze.com>
+Distributed under the Boost Software License, Version 1.0. (See accompanying file `LICENSE_1_0.txt` or copy at http://boost.org/LICENSE_1_0.txt)
 
