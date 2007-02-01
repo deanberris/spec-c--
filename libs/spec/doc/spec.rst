@@ -1,0 +1,49 @@
+=====================================
+Behavior Driven Development Interface
+=====================================
+--------------------
+The Spec C++ Library
+--------------------
+
+The Spec C++ Library implements a Behavior Driven Development [0]_ (BDD)
+Interface for specifying behavior of a program. The interface allows an 
+alternative to the traditional Unit Testing interface of assertions to 
+test the behavior of modules/units/components.
+
+.. [0] Behavior Driven Development: http://behaviour-driven.org/
+
+Below is shown the example of how the Spec library can be used in your test
+suites:
+
+    ``#include <boost/spec.hpp>
+    #include <iostream>
+
+    int main(int argc, char * argv[]) {
+        using namespace boost::spec ;
+        using namespace std;
+
+        int an_int = 0;
+        cout << "Please enter an integer: " << endl;
+        cin >> an_int;
+        try {
+            value(an_int).should.be_greater_than(0);
+            value(an_int).should.be_less_than(99);
+            value(an_int).should.be_between(0).and_(99);
+            value(an_int).should.equal(50);
+        } catch (std::exception & e) {
+            cerr << "Caught: " << e.what() << '\n';
+        };
+        return 0;
+    };``
+
+Depending on what the user enters, the exception that is thrown by the
+specifications will be displayed. Should the user enter ``50`` there will
+be no exception thrown.
+
+The library is developed to be part of the `Boost C++ Library`_.
+
+.. _`Boost C++ Library`: http://boost.org/
+
+---------------
+Copyright (C) 2007 Dean Michael Berris <dean@orangeandbronze.com>
+
