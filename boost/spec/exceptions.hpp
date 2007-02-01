@@ -6,6 +6,8 @@
 #ifndef __SPEC_EXCEPTIONS_HPP__
 #define __SPEC_EXCEPTIONS_HPP__
 
+#include <sstream>
+
 namespace boost { namespace spec {
 
     template <typename T, typename _T>
