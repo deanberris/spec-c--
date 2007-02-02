@@ -60,6 +60,10 @@ The following list shows the features that the Spec library implements.
   - ``value(some_int).should.be_less_than(0)``
   - ``value(some_int).should.not_equal(0)``
   - ``value(some_int).should.be_between(0).and_(1)``
+  - ``value(some_int).should.be_even()``
+  - ``value(some_int).should.be_odd()``
+  - ``value(some_int).should.be_divisible_by(5)``
+  - ``value(some_int).should.not_be_divisible_by(9)``
 
 - String value specification of expected values
 
