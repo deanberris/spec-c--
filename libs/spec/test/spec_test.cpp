@@ -75,5 +75,9 @@ int main (int argc, char * argv[]) {
     value(str).should.match("The quick brown fox jumps over the lazy dog.");
     value(str).should.match("^The.*[.]");
 
+    int * ptr = NULL;
+    value(ptr).should.be_null();
+    value(++ptr).should.not_be_null();
+
     return 0;
 };

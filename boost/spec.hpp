@@ -13,7 +13,9 @@
 #include <boost/spec/exceptions.hpp>
 #include <boost/spec/detail/should_impl.hpp>
 #include <boost/type_traits/is_array.hpp>
+#include <boost/type_traits/is_pointer.hpp>
 #include <boost/type_traits/is_same.hpp>
+#include <boost/type_traits/remove_pointer.hpp>
 #include <boost/type_traits/remove_all_extents.hpp>
 #include <boost/mpl/if.hpp>
 #include <boost/mpl/and.hpp>
@@ -21,32 +23,56 @@
 
 namespace boost { namespace spec {
 
+    namespace tags {
+        template <typename T> struct pointer { typedef T type; };
+        template <typename T> struct wrap_ { typedef T type; };
+    };
+
     using namespace boost::mpl;
 
     template <typename T>
     struct spec {
-        typedef typename if_< 
-                and_<
-                    boost::is_array<
-                        T
-                    >, 
+        typedef typename if_<
+            and_<
+                boost::is_array<T>, 
+                boost::is_same<
+                    typename boost::remove_all_extents<T>::type,
+                    char
+                > 
+            >,
+            tags::wrap_<std::string> , 
+            typename if_<
+                boost::is_pointer<T>,
+                tags::pointer<typename boost::remove_all_extents<T>::type>,
+                tags::wrap_<T>
+            >::type
+        >::type type;
+
+        typename type::type _value;
+
+        typename if_<
+            boost::is_same<
+                tags::pointer<typename boost::remove_all_extents<T>::type>,
+                type
+            >,
+            detail::should_impl_ptr<typename boost::remove_pointer<T>::type>,
+            detail::should_impl<typename type::type>
+        >::type should, & must;
+
+        explicit spec(
+                typename if_<
                     boost::is_same<
-                        typename boost::remove_all_extents<T>::type, 
-                        char
-                    > 
-                >,
-                std::string , 
-                T 
-            >::type type;
-
-        type const & _value;
-        detail::should_impl<type> should;
-
-        spec(type const & v) : _value(v), should(_value){ };
+                        tags::pointer<typename boost::remove_all_extents<T>::type>,
+                        type
+                    >,
+                    typename boost::remove_pointer<T>::type * const,
+                    T const
+                >::type
+                    & v) : _value(v), should(_value), must(should) { };
     };
     
     template <typename T>
-    inline spec <T> value (const T & v) {
+    inline spec<T> value (const T & v) {
         return spec<T>(v);
     };
 

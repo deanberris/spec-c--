@@ -243,6 +243,50 @@ namespace boost { namespace spec {
             std::string _message;
         };
 
+    template <typename T>
+        struct is_null : std::exception {
+            explicit is_null(T const & value)
+                : _value(value) {
+                    std::ostringstream message("");
+                    message << "spec:: value supplied ("
+                        << _value
+                        << ") is NULL.";
+
+                    _message = message.str();
+                };
+
+            const char * what() const throw () {
+                return _message.c_str();
+            };
+
+            ~is_null() throw () { };
+
+            T _value;
+            std::string _message;
+        };
+
+    template <typename T>
+        struct is_not_null : std::exception {
+            explicit is_not_null(T const & value)
+                : _value(value) {
+                    std::ostringstream message("");
+                    message << "spec:: value supplied ("
+                        << _value
+                        << ") is not NULL.";
+
+                    _message = message.str();
+                };
+
+            const char * what() const throw () {
+                return _message.c_str();
+            };
+
+            ~is_not_null() throw () { };
+
+            T _value;
+            std::string _message;
+        };
+
 }; // namespace spec
 
 }; // namespace boost
