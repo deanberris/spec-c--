@@ -17,6 +17,26 @@ int main (int argc, char * argv[]) {
     variable.should.be_less_than(11);
     variable.should.be_more_than(9);
     variable.should.be_between(5).and_(15);
+    variable.should.be_even();
+    variable.should.be_divisible_by(5);
+
+    try {
+        variable.should.be_odd();
+    } catch (std::exception & e) {
+        std::cerr << "Expected: " << e.what() << '\n';
+    };
+
+    try {
+        variable.should.not_be_divisible_by(5);
+    } catch (std::exception & e) {
+        std::cerr << "Expected: " << e.what() << '\n';
+    };
+
+    try {
+        variable.should.be_divisible_by(3);
+    } catch (std::exception & e) {
+        std::cerr << "Expected: " << e.what() << '\n';
+    };
 
     try {
         value(v).should.equal(11);

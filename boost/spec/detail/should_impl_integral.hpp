@@ -62,6 +62,36 @@ namespace boost { namespace spec { namespace detail {
             return between_impl<_T>(_value);
         };
 
+        template <typename _T>
+            bool be_divisible_by(const _T & divisor) const {
+                if (_value % divisor)
+                    throw is_not_divisible_by<T, _T>(_value, divisor);
+
+                return true;
+            };
+
+        template <typename _T>
+            bool not_be_divisible_by(const _T & divisor) const {
+                if (!(_value % divisor))
+                    throw is_divisible_by<T, _T>(_value, divisor);
+
+                return true;
+            };
+
+        bool be_even() const {
+            if (_value % 2)
+                throw is_odd<T>(_value);
+
+            return true;
+        };
+
+        bool be_odd() const {
+            if (!(_value % 2))
+                throw is_even<T>(_value);
+
+            return true;
+        };
+
         T const & _value;
     };
 
