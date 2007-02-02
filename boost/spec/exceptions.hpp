@@ -6,6 +6,8 @@
 #ifndef __SPEC_EXCEPTIONS_HPP__
 #define __SPEC_EXCEPTIONS_HPP__
 
+#include <sstream>
+
 namespace boost { namespace spec {
 
     template <typename T, typename _T>
@@ -115,6 +117,131 @@ namespace boost { namespace spec {
         _T _upper_bound;
         std::string _message;
     };
+
+    template <typename T, typename _T>
+    struct is_not_divisible_by : std::exception {
+
+        is_not_divisible_by(const T & value, const _T & divisor)
+            : _value(value) , _divisor(divisor) 
+        { 
+            std::ostringstream message("");
+            message << "spec:: value supplied ("
+                << _value 
+                << ") is not divisible by ("
+                << _divisor
+                << ")";
+
+            _message = message.str();
+        };
+
+        const char * what() const throw (){
+            return _message.c_str() ;
+        };
+
+        ~is_not_divisible_by() throw () { };
+        
+        T _value;
+        _T _divisor;
+        std::string _message;
+    };
+
+    template <typename T, typename _T>
+    struct is_divisible_by : std::exception {
+
+        is_divisible_by(const T & value, const _T & divisor)
+            : _value(value) , _divisor(divisor) 
+        { 
+            std::ostringstream message("");
+            message << "spec:: value supplied ("
+                << _value 
+                << ") is divisible by ("
+                << _divisor
+                << ")";
+
+            _message = message.str();
+        };
+
+        const char * what() const throw (){
+            return _message.c_str() ;
+        };
+
+        ~is_divisible_by() throw () { };
+        
+        T _value;
+        _T _divisor;
+        std::string _message;
+    };
+
+    template <typename T, typename _T>
+    struct does_not_match_exception : std::exception {
+
+        does_not_match_exception(const T & value, const _T & pattern)
+            : _value(value) , _pattern(pattern) 
+        { 
+            std::ostringstream message("");
+            message << "spec:: value supplied ("
+                << _value 
+                << ") does not match pattern '"
+                << _pattern
+                << "'";
+
+            _message = message.str();
+        };
+
+        const char * what() const throw (){
+            return _message.c_str() ;
+        };
+
+        ~does_not_match_exception() throw () { };
+        
+        T _value;
+        _T _pattern;
+        std::string _message;
+    };
+
+    template <typename T>
+        struct is_odd : std::exception {
+            explicit is_odd(T const & value)
+                : _value(value) {
+                    std::ostringstream message("");
+                    message << "spec:: value supplied ("
+                        << _value
+                        << ") is odd.";
+
+                    _message = message.str();
+                };
+
+            const char * what() const throw () {
+                return _message.c_str();
+            };
+
+            ~is_odd() throw () { };
+
+            T _value;
+            std::string _message;
+        };
+
+    template <typename T>
+        struct is_even : std::exception {
+            explicit is_even(T const & value)
+                : _value(value) {
+                    std::ostringstream message("");
+                    message << "spec:: value supplied ("
+                        << _value
+                        << ") is even.";
+
+                    _message = message.str();
+                };
+
+            const char * what() const throw () {
+                return _message.c_str();
+            };
+
+            ~is_even() throw () { };
+
+            T _value;
+            std::string _message;
+        };
 
 }; // namespace spec
 
