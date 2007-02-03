@@ -1,12 +1,16 @@
 For version 0.2
 
-* Add Regex String Matching Support -- DONE (Feb. 2, 2007 -- Dean Michael Berris)
+Done:
+* Add Regex String Matching Support
 * Add more integral type specifications
-    * "should.be_divisible_by(#)" -- DONE
-    * "should.be_even()" -- DONE
-    * "should.be_odd()" -- DONE
+    * "should.be_divisible_by(#)"
+    * "should.be_even()"
+    * "should.be_odd()"
 * Add pointer inspection / specification
     * "should.be_null()" and "should.be_not_null()/should.not_be_null()"
+
+Missing:
+* Add pointer inspection / specification
     * "should.be_of_type<type>(instance)" and "should.not_be_of_type<type>(instance)"
     * "should.be_derived_from<type>(instance)" and "should.not_be_derived_from<type>(instance)"
 * Add container inspection / specification

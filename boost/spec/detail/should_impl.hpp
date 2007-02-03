@@ -23,6 +23,7 @@ namespace boost { namespace spec { namespace detail {
 #include <boost/spec/detail/should_impl_string.hpp>
 #include <boost/spec/detail/should_impl_integral.hpp>
 #include <boost/spec/detail/should_impl_boolean.hpp>
+#include <boost/spec/detail/should_impl_pointer.hpp>
 
 #endif
 
