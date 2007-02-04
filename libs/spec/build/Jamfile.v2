@@ -5,12 +5,17 @@
 
 using testing ;
 
+import modules ;
+
+local HOME = [ modules.peek : HOME ] ;
+
+use-project /boost : $(HOME)/boost ;
+
 project spec.test 
     : source-location ../test
     : requirements <include>../../..
     ;
 
-unit-test spec_test : spec_test.cpp
-    : <linkflags>-lboost_regex-gcc41
+unit-test spec_test : spec_test.cpp /boost//regex
     ;
 
