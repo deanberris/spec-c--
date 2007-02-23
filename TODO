@@ -8,13 +8,14 @@ Done:
     * "should.be_odd()"
 * Add pointer inspection / specification
     * "should.be_null()" and "should.be_not_null()/should.not_be_null()"
+* Add container inspection / specification
+    * "should.contain(instance)" and "should.not_contain()"
+    * "should.be_empty()" and "should.not_be_empty()/should.be_not_empty()"
 
 Missing:
 * Add pointer inspection / specification
     * "should.be_of_type<type>(instance)" and "should.not_be_of_type<type>(instance)"
     * "should.be_derived_from<type>(instance)" and "should.not_be_derived_from<type>(instance)"
 * Add container inspection / specification
-    * "should.be_empty()" and "should.not_be_empty()/should.be_not_empty()"
-    * "should.contain(instance)" and "should.not_contain()"
 * Implement appropriate exception types
 

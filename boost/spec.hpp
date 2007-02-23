@@ -12,6 +12,7 @@
 
 #include <boost/spec/exceptions.hpp>
 #include <boost/spec/detail/should_impl.hpp>
+#include <boost/spec/detail/container_should_impl.hpp>
 #include <boost/type_traits/is_array.hpp>
 #include <boost/type_traits/is_pointer.hpp>
 #include <boost/type_traits/is_same.hpp>
@@ -74,6 +75,20 @@ namespace boost { namespace spec {
     template <typename T>
     inline spec<T> value (const T & v) {
         return spec<T>(v);
+    };
+
+    template <typename T>
+    struct container_spec {
+        typedef T type;
+        T & container;
+        detail::should_container_impl<T> should, & must;
+
+        explicit container_spec(T & container_) : container(container_), should(container), must(should) { };
+    };
+
+    template <typename T>
+    inline container_spec<T> container(T & c) {
+        return container_spec<T>(c);
     };
 
 }; // namespace spec
