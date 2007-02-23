@@ -4,7 +4,6 @@
 // http://www.boost.org/LICENSE_1_0.txt )
 
 #include <boost/spec.hpp>
-#include <vector>
 #include <iostream>
 
 using namespace boost::spec ;

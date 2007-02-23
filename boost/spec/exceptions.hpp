@@ -244,6 +244,50 @@ namespace boost { namespace spec {
         };
 
     template <typename T>
+        struct container_does_not_contain : std::exception {
+            explicit container_does_not_contain (T const & value)
+                : _value(value) {
+                    std::ostringstream message("");
+                    message << "spec:: container supplied does not contain value ("
+                        << _value
+                        << ").";
+
+                    _message = message.str();
+                };
+
+            const char * what() const throw () {
+                return _message.c_str();
+            };
+
+            ~container_does_not_contain() throw () { };
+
+            T _value;
+            std::string _message;
+        };
+
+    template <typename T>
+        struct container_contains : std::exception {
+            explicit container_contains (T const & value)
+                : _value(value) {
+                    std::ostringstream message("");
+                    message << "spec:: container supplied contains value ("
+                        << _value
+                        << ").";
+
+                    _message = message.str();
+                };
+
+            const char * what() const throw () {
+                return _message.c_str();
+            };
+
+            ~container_contains() throw () { };
+
+            T _value;
+            std::string _message;
+        };
+
+    template <typename T>
         struct is_null : std::exception {
             explicit is_null(T const & value)
                 : _value(value) {
@@ -287,6 +331,45 @@ namespace boost { namespace spec {
             std::string _message;
         };
 
+    template <typename T>
+        struct container_not_empty : std::exception {
+            typedef T type;
+            explicit container_not_empty()
+                {
+                    std::ostringstream message("");
+                    message << "spec:: container supplied is not empty.";
+
+                    _message = message.str();
+                };
+
+            const char * what() const throw () {
+                return _message.c_str();
+            };
+
+            ~container_not_empty() throw () { };
+
+            std::string _message;
+        };
+
+    template <typename T>
+        struct container_empty : std::exception {
+            typedef T type;
+            explicit container_empty()
+                {
+                    std::ostringstream message("");
+                    message << "spec:: container supplied is empty.";
+
+                    _message = message.str();
+                };
+
+            const char * what() const throw () {
+                return _message.c_str();
+            };
+
+            ~container_empty() throw () { };
+
+            std::string _message;
+        };
 }; // namespace spec
 
 }; // namespace boost

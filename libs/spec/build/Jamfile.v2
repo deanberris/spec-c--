@@ -19,3 +19,6 @@ project spec.test
 unit-test spec_test : spec_test.cpp /boost//regex
     ;
 
+unit-test spec_test_containers : spec_test_containers.cpp
+    : <linkflags>-lboost_regex-gcc41
+    ;
