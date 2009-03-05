@@ -29,22 +29,22 @@ namespace boost { namespace spec {
         template <typename T> struct wrap_ { typedef T type; };
     };
 
-    using namespace boost::mpl;
+    using namespace ::boost::mpl;
 
     template <typename T>
     struct spec {
         typedef typename if_<
             and_<
-                boost::is_array<T>, 
-                boost::is_same<
-                    typename boost::remove_all_extents<T>::type,
+                is_array<T>, 
+                is_same<
+                    typename remove_all_extents<T>::type,
                     char
                 > 
             >,
             tags::wrap_<std::string> , 
             typename if_<
-                boost::is_pointer<T>,
-                tags::pointer<typename boost::remove_all_extents<T>::type>,
+                is_pointer<T>,
+                tags::pointer<typename remove_all_extents<T>::type>,
                 tags::wrap_<T>
             >::type
         >::type type;
@@ -52,21 +52,21 @@ namespace boost { namespace spec {
         typename type::type _value;
 
         typename if_<
-            boost::is_same<
-                tags::pointer<typename boost::remove_all_extents<T>::type>,
+            is_same<
+                tags::pointer<typename remove_all_extents<T>::type>,
                 type
             >,
-            detail::should_impl_ptr<typename boost::remove_pointer<T>::type>,
+            detail::should_impl_ptr<typename remove_pointer<T>::type>,
             detail::should_impl<typename type::type>
         >::type should, & must;
 
         explicit spec(
                 typename if_<
-                    boost::is_same<
-                        tags::pointer<typename boost::remove_all_extents<T>::type>,
+                    is_same<
+                        tags::pointer<typename remove_all_extents<T>::type>,
                         type
                     >,
-                    typename boost::remove_pointer<T>::type * const,
+                    typename remove_pointer<T>::type * const,
                     T const
                 >::type
                     & v) : _value(v), should(_value), must(should) { };
