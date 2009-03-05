@@ -12,9 +12,12 @@ stylesheet = "--stylesheet=rst.css" ;
 for local b in $(bases) 
 {
     html $(b) : $(b).rst :
-                  <docutils-html>"--link-stylesheet --traceback --footnote-references=superscript "$(stylesheet)
-                                                                                            ;
+
+    <docutils-html>"-gdt --source-url="./$(b).rst" --link-stylesheet --traceback --trim-footnote-reference-space --footnote-references=superscript "$(stylesheet)
+    <docutils-cmd>rst2html
+    ;
 }
 
+alias htmls : $(bases) ;
 stage . : $(bases) ;
 

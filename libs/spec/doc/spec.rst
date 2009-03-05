@@ -1,4 +1,5 @@
 .. Copyright 2007 (C) Dean Michael Berris <dean@orangeandbronze.com>
+.. Copyright 2008-2009 (C) Dean Michael Berris <me@deanberris.com>
 .. Distributed under the Boost Software License, Version 1.0.
 .. (See accompanying file LICENSE_1_0.txt or copy at
 .. http://boost.org/LICENSE_1_0.txt)
@@ -74,6 +75,12 @@ The following list shows the features that the Spec library implements.
 
   - ``value(some_bool).should.be_true()``
   - ``value(some_bool).should.be_false()``
+
+- Container inspection
+
+  - ``container(some_container).should.contain(value)``
+  - ``container(some_container).should.not_contain(value)``
+  - ``container(some_container).should.not_be_empty()``
 
 ----------
 References
