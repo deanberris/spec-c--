@@ -81,6 +81,7 @@ The following list shows the features that the Spec library implements.
   - ``container(some_container).should.contain(value)``
   - ``container(some_container).should.not_contain(value)``
   - ``container(some_container).should.not_be_empty()``
+  - ``container(some_container).should.have_size(value)``
 
 ----------
 References
@@ -93,5 +94,6 @@ References
 ---------------
 
 | Copyright (C) 2007 Dean Michael Berris <dean@orangeandbronze.com> 
+| Copyright (C) 2009 Dean Michael Berris <me@deanberris.com>
 | Distributed under the Boost Software License, Version 1.0. (See accompanying file `LICENSE_1_0.txt` or copy at http://boost.org/LICENSE_1_0.txt)
 
