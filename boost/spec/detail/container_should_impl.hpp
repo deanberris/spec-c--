@@ -34,19 +34,23 @@ namespace boost { namespace spec { namespace detail {
             };
 
         bool be_empty() const {
-            if (_container.size())
+            if (!_container.empty())
                 throw container_not_empty<T>();
             return true;
         };
 
         bool not_be_empty() const {
-            if (!_container.size())
+            if (_container.empty())
                 throw container_empty<T>();
             return true;
         };
 
         bool be_not_empty() const {
             return not_be_empty();
+        };
+
+        bool have_size(typename T::size_type size) const {
+            return (_container.size() == size);
         };
     };
 

@@ -75,7 +75,7 @@ namespace boost { namespace spec {
     template <typename T>
     inline spec<T> value (const T & v) {
         return spec<T>(v);
-    };
+    }
 
     template <typename T>
     struct container_spec {
@@ -89,7 +89,7 @@ namespace boost { namespace spec {
     template <typename T>
     inline container_spec<T> container(T & c) {
         return container_spec<T>(c);
-    };
+    }
 
 }; // namespace spec
 
